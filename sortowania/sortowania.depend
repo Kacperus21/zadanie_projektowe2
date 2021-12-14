@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1639490051 source:c:\users\kacpe\desktop\zadanie projektowe 2\sortowania\main.cpp
+1639504318 source:c:\users\kacpe\desktop\zadanie projektowe 2\sortowania\main.cpp
 	<iostream>
 	<locale.h>
 	<chrono>

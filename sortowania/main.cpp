@@ -65,8 +65,15 @@ return max;
 }
 int pseudolosowe(int N,int tablica_wejsciowa1[])
 {
-    for(int i = 0; i < N; i++) tablica_wejsciowa1[i]=rand() % 100000;//wylosowanie liczb do tablicy z zakresu 0-99
+    ofstream pliklos;
+    pliklos.open("losowe.txt", ios::in | ios::out | ios::app );// tworzy i otwiera plik
+    for(int i = 0; i < N; i++)
+        {
+        tablica_wejsciowa1[i]=rand() % 100000;//wylosowanie liczb do tablicy z zakresu 0-99999
+        pliklos<<tablica_wejsciowa1[i]<<" ";
 
+        }
+        pliklos.close();
 }
 int main()
 {
@@ -77,24 +84,24 @@ int main()
     //Babelkowy
     int i,j;
     int tablica_wejsciowa1[N];
-    pseudolosowe(N,tablica_wejsciowa1);
+    pseudolosowe(N,tablica_wejsciowa1);//wywolanie funkcji losujacej
     bubble(i,j,tablica_wejsciowa1);//wywolanie
     delete [] tablica_wejsciowa1;
     //Zliczanie
     int ilosc_liczb=N;
 
-// utworzenie dynamicznej dwoch tablic na 'ilosc_liczb' elementow
+// utworzenie dwoch dynamiczny tablic
 int *tablica_wejsciowa = new int [ilosc_liczb]; // tablica zawierajaca ciag wejsciowy
 int *tablica_wyjsciowa = new int [ilosc_liczb]; // tablica zawierajaca posortowany ciag
 srand((unsigned)time(NULL));
-pseudolosowe(N,tablica_wejsciowa);
+    pseudolosowe(N,tablica_wejsciowa);//wywolanie funkcji losujacej
 double roznica;
-cout.setf(ios::fixed); //notacja zwykla, czyli nie wywali wyniku typu 1.175000e+003
+cout.setf(ios::fixed); //notacja zwykla
 cout.precision(6); //liczba miejsc po przecinku, dokladnosc naszego wyniku
 clock_t start, koniec; //inicjacja zmiennych zegarowych
 start=clock(); //zapisanie czasu startu mierzenia
 int k = max_liczba(tablica_wejsciowa, ilosc_liczb); // wyszukanie najwiekszej liczby w ciagu wejsciowym
-counting(tablica_wejsciowa,tablica_wyjsciowa, k, ilosc_liczb); // wywolanie funkcji sortujacej
+    counting(tablica_wejsciowa,tablica_wyjsciowa, k, ilosc_liczb); // wywolanie funkcji sortujacej
 koniec=clock();//zapisanie konca mierzenia
 roznica=(koniec-start)/(double)CLOCKS_PER_SEC;//obliczenie roznicy, czyli czasu wykonania
 cout<<endl;
@@ -109,7 +116,7 @@ for (i = 0; i < ilosc_liczb; i++)
     }
 
     plik.close();
-// zwolnienie tablic zaalokowanych dynamicznie
+// zwolnienie tablic
 delete [] tablica_wejsciowa;
 delete [] tablica_wyjsciowa;
 
